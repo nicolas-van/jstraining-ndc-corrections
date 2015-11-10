@@ -7,6 +7,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="app.js"></script>
   </head>
   <body>
@@ -15,23 +16,14 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">NDC Training</a>
         </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#/page1">Page 1</a></li>
+          <li><a href="#/page2">Page 2</a></li>
+        </ul>
       </div>
     </nav>
-    <div class="container" ng-controller="MainPageCtrl">
-      <div class="row">
-        <div class="col-md-12">
-          <h1>{{ "The Form" }}</h1>
-          <input type="text" ng-model="inputText">
-          <button ng-click="copyText()">Copy the text!</button>
-          <p>
-            <ul>
-              <li ng-repeat="text in displayedTexts">
-                {{ text.txt }}
-              </li>
-            </ul>
-          </p>
-        </div>
-      </div>
+    <div class="container">
+      <div ng-view></div>
     </div>
   </body>
 </html>
