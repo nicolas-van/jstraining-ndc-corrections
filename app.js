@@ -29,4 +29,19 @@
 
     }]);
 
+    mySuperApp.directive('helloText', [function() {
+      return {
+        restrict: 'E',
+        templateUrl: 'views/hello-text.html',
+        scope: {},
+        link: function($scope, element, attr) {
+            $scope.date = new Date();
+            setInterval(function() {
+                $scope.date = new Date();
+                $scope.$apply();
+            }, 100);
+        },
+      };
+    }]);
+
 })();
