@@ -2,14 +2,17 @@
 (function () {
     "use strict";
 
-    $(function() {
+    var mySuperApp = angular.module('mySuperApp', []);
 
-        $("form").submit(function(e) {
-            e.preventDefault();
-            var text = $("input").val();
-            $("form").after($("<div class='panel panel-default'><div class='panel-body'>" + text + "</div></div>"));
-        });
+    mySuperApp.controller("MainPageCtrl", ["$scope", function($scope) {
 
-    });
+        $scope.displayedTexts = [];
+        $scope.inputText = "";
+
+        $scope.copyText = function() {
+            $scope.displayedTexts.push({txt: $scope.inputText});
+        };
+
+    }]);
 
 })();

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="mySuperApp">
   <head>
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
     <script src="app.js"></script>
   </head>
   <body>
@@ -16,26 +17,19 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+    <div class="container" ng-controller="MainPageCtrl">
       <div class="row">
-        <div class="col-md-3">
-          <ul>
-            <li><a href="#">Something 1</a></li>
-            <li><a href="#">Something 2</a></li>
-            <li><a href="#">Something 3</a></li>
-          </ul>
-        </div>
-        <div class="col-md-9">
-          <h1>The Wonderful Form</h1>
-            <form>
-              <div class="form-group">
-                <label>Text</label>
-                <input type="text" class="form-control" placeholder="Please enter your text">
-              </div>
-              <div>
-                <button type="submit" class="btn btn-default">Submit</button>
-              </div>
-            </form>
+        <div class="col-md-12">
+          <h1>{{ "The Form" }}</h1>
+          <input type="text" ng-model="inputText">
+          <button ng-click="copyText()">Copy the text!</button>
+          <p>
+            <ul>
+              <li ng-repeat="text in displayedTexts">
+                {{ text.txt }}
+              </li>
+            </ul>
+          </p>
         </div>
       </div>
     </div>
