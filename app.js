@@ -2,7 +2,7 @@
 (function () {
     "use strict";
 
-    var mySuperApp = angular.module('mySuperApp', ['ngRoute']);
+    var mySuperApp = angular.module('mySuperApp', ['ngRoute', "kendo.directives"]);
 
     mySuperApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/page1', {
@@ -15,6 +15,10 @@
           when('/async', {
             templateUrl: 'views/async.html',
             controller: 'AsyncCtrl',
+          }).
+          when('/kendoui', {
+            templateUrl: 'views/kendoui.html',
+            controller: 'KendoUiCtrl',
           }).
           otherwise({
             redirectTo: '/page1',
@@ -65,6 +69,47 @@
             }, 100);
         },
       };
+    }]);
+
+    mySuperApp.controller("KendoUiCtrl", ["$scope", "$http", function($scope, $http) {
+
+        $scope.gridOptions = {
+            columns: [
+                {"field": "firstName", "title": "First Name", width: 200},
+                {"field": "familyName", "title": "Family Name", width: 200},
+                {"field": "age", "title": "Age"},
+                {"field": "title", "title": "Title"},
+                {"field": "salary","title": "Salary", "format": "{0:n0}"},
+            ],
+            height: 200,
+            resizable: true,
+            sortable: true,
+            filterable: true,
+            editable: true,
+        };
+
+        $scope.chartOptions = {
+            height: 500,
+            series: [{
+                type: "scatterLine",
+                name: "Salary",
+                yField: "salary",
+                xField: "age",
+            }],
+            xAxis: {
+                title: "Age",
+            },
+            yAxis: {
+                title: "Salary",
+            },
+        };
+
+        $scope.dataSource = new kendo.data.DataSource({});
+
+        $http.get("db.json").then(function(result) {
+            $scope.dataSource.data(result.data);
+        });
+
     }]);
 
 })();

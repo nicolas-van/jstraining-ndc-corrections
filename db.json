@@ -1,0 +1,7 @@
+[
+    {"firstName": "John", "familyName": "Smith", "title": "Employee", "age": 31, "salary": 30000},
+    {"firstName": "Jane", "familyName": "Simpsons", "title": "Employee", "age": 29, "salary": 40000},
+    {"firstName": "Gerald", "familyName": "Obama", "title": "CEO", "age": 52, "salary": 50000},
+    {"firstName": "Charles", "familyName": "Clinton", "title": "Consultant", "age": 44, "salary": 20000},
+    {"firstName": "Tom", "familyName": "Gore", "title": "Employee", "age": 23, "salary": 25000}
+]
