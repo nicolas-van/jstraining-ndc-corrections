@@ -32,21 +32,20 @@
 
     }]);
 
-    mySuperApp.controller("AsyncCtrl", ["$scope", "$http", function($scope, $http) {
+    mySuperApp.controller("AsyncCtrl", ["$scope", "$http", "$q", function($scope, $http, $q) {
 
         $scope.results = [];
 
-        var p1 = $http.get("/add?arg1=1&arg2=2").then(function(result) {
-            $scope.results.push(result.data);
-            return $http.get("/add?arg1=" + result.data + "&arg2=3");
-        }).then(function(result) {
-            $scope.results.push(result.data);
-            return $http.get("/add?arg1=" + result.data + "&arg2=4");
-        }).then(function(result) {
-            $scope.results.push(result.data);
-            return $http.get("/add?arg1=" + result.data + "&arg2=5");
-        }).then(function(result) {
-            $scope.results.push(result.data);
+        var p1 = $http.get("/mult?arg1=1&arg2=2");
+        var p2 = $http.get("/mult?arg1=2&arg2=3");
+        var p3 = $http.get("/mult?arg1=3&arg2=4");
+        var p4 = $http.get("/mult?arg1=4&arg2=5");
+        var p5 = $http.get("/mult?arg1=5&arg2=6");
+
+        $q.all([p1, p2, p3, p4, p5]).then(function(results) {
+            results.forEach(function(element) {
+                $scope.results.push(element.data);
+            });
         });
 
         console.log("b");
